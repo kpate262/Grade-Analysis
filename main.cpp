@@ -247,11 +247,13 @@ void unknown(const College &c){
 	string line = "";
 	cout << "dept name, or all? ";
 	getline(cin, line);
+	int count = 0;
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(const Course &w: d.Courses){
 				if(w.getGradingType() == 2){
+					count++;
 					getCourseInfo(w);
 				}
 			}
@@ -261,14 +263,16 @@ void unknown(const College &c){
 		if(y.Name.compare("empty") != 0){
 			for(const Course &w: y.Courses){
 				if(w.getGradingType() == 2){
+					count++;
 					getCourseInfo(w);
-				}
-				else{
-					cout << "**none found" << endl;
 				}
 			}
 		}
 		
+	}
+	
+	if(count == 0){
+		cout << "**none found" << endl;
 	}
 	return;
 }
