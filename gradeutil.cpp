@@ -84,91 +84,72 @@ double GetDFWRate(const Course& c, int& DFW, int& N)
 {
   DFW = 0;
   N   = 0;
-    
-    if(c.getGradingType() != Course::Letter){
-        DFW = N = 0;
-       return 0.0;
-   }
-  
-  DFW = c.NumD +  c.NumF +  c.NumW;
-  N =  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF +  c.NumW;
    
-  
-  return ((DFW*1.0/N)*100.0);
+  //
+  // how was course graded?  If not a letter, then cannot compute
+  // DFW rate, so return 0.0:
+  //
+  Course::GradingType grading = c.getGradingType();
+     
+  if (grading != Course::Letter)
+    return 0.0;
+       
+  //
+  // we have letter grades (at least 1), so compute DFW rate:
+  //
+  DFW = c.NumD + c.NumF + c.NumW;
+  N   = c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW;
+   
+  if (N == 0) // just in case, guard against divide by 0:
+    return 0.0;
+     
+  return (static_cast<double>(DFW) / static_cast<double>(N)) * 100.0;
 }
-
+ 
 double GetDFWRate(const Dept& dept, int& DFW, int& N)
 {
   DFW = 0;
   N   = 0;
-  
-  int index = 0;
-  int index2 = 0;
-  
-  if(dept.Courses.empty() == true){
-      DFW = N = 0;
-      return 0.0;
+   
+  for (const Course& c : dept.Courses)
+  {
+    if (c.getGradingType() != Course::Letter)
+      continue;  // skip
+     
+    // course had letter grades, so include in DFW calculation:
+    DFW += (c.NumD + c.NumF + c.NumW);
+    N   += (c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW);
   }
-    
-  for(const Course &c: dept.Courses){
-      index2++;
-      if(c.getGradingType() != Course::Letter){
-          index++;
-          DFW += 0;
-          N += 0;
-          continue;
-       }else{
-          N += c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW;
-          DFW += c.NumD + c.NumF + c.NumW;
-      }
-      
-  }
-    if(index == index2){
-        DFW = N = 0;
-        return 0.0;
-    }
-
-  
-  return ((DFW*1.0/N)*100.0);
+   
+  if (N == 0) // just in case, guard against divide by 0:
+    return 0.0;
+     
+  return (static_cast<double>(DFW) / static_cast<double>(N)) * 100.0;
 }
-
-
+ 
 double GetDFWRate(const College& college, int& DFW, int& N)
 {
   DFW = 0;
   N   = 0;
-    
-  int index = 0;
-  int index2 = 0;
-    
-  if(college.Depts.empty() == true){
-      DFW = N = 0;
-      return 0.0;
+   
+  for (const Dept& dept : college.Depts)
+  {
+    for (const Course& c : dept.Courses)
+    {
+      if (c.getGradingType() != Course::Letter)
+        continue;  // skip
+     
+      // course had letter grades, so include in DFW calculation:
+      DFW += (c.NumD + c.NumF + c.NumW);
+      N   += (c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW);
+    }
   }
-
-    for( const Dept &d: college.Depts){
-        index2++;
-        for( const Course &c: d.Courses){
-           if(c.getGradingType() != Course::Letter){
-               index++;
-               DFW += 0;
-               N += 0;
-               continue;
-           }else{
-              N += c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW;
-              DFW += c.NumD + c.NumF + c.NumW;
-           }
-        }
-    }
     
-    if(index == index2){
-        DFW = N = 0;
-        return 0.0;
-    }
-
-  return ((DFW*1.0/N)*100.0);
+  if (N == 0) // just in case, guard against divide by 0:
+    return 0.0;
+     
+  return (static_cast<double>(DFW) / static_cast<double>(N)) * 100.0;
 }
-
 
 //
 // GetGradeDistribution
