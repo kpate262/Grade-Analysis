@@ -12,6 +12,30 @@
 using namespace std;
 
 
+void info(const College &c){
+	int courseCounter = 0;
+	int studentCounter = 0;
+	GradeStats g = GetGradeDistribution(c);
+	int dfw = 0;
+	int n = 0;
+	for(const Dept &d: c.Depts){
+		courseCounter += d.Courses.size();
+		for(const Course &s: d.Courses){
+			studentCounter += s.getNumStudents();
+		}
+	}
+	
+	cout << "# of courses taught: " << courseCounter << endl;
+	cout << "# of students taught: " << studentCounter << endl;
+	cout << "grade distribution (A-F): " << g.PercentA << "%, " <<
+		g.PercentB << "%, " << g.PercentC << "%, " << g.PercentD 
+		<< "%, " << g.PercentF << "% " << endl;
+	cout << "DFW rate: " <<  GetDFWRate(c, dfw, n) << "%" << endl << endl;
+	
+	return;
+}
+
+
 string parseHeader(string line, string &season, string &year){
 	string collegeName;
 	stringstream ss(line);
@@ -45,43 +69,57 @@ void parseDept(Course &s, College &c){
 }
 
 
+auto findDept(const College &c){
+	string line = "";
+	getline(cin, line);
+	
+	if(line.compare("all") == 0){
+		return c.Depts;
+	}
+	
+	auto r = find_if(line.begin(), line.end(), 
+					[](string s){
+						//////////////ended here!!!
+					});
+}
 
-void summary(){
+
+void summary(const College &c){
+	cout << "dept name, or all? ";
+	return;
+}
+
+
+
+void search(const College &c){
 	
 	return;
 }
 
 
 
-void search(){
+void unknown(const College &c){
 	
 	return;
 }
 
 
 
-void unknown(){
+void dfw(const College &c){
 	
 	return;
 }
 
 
 
-void dfw(){
+void letterA(const College &c){
 	
 	return;
 }
 
 
 
-void letterA(){
-	
-	return;
-}
-
-
-
-void queries(College &c){
+void queries(const College &c){
 	vector<string> commands{"summary", "search", "unknown", "dfw", "letterA"};
 	string command = "";
 	while (command.compare("#") != 0){
@@ -125,6 +163,8 @@ void queries(College &c){
 }
 
 
+
+
 int main(){
 	cout <<fixed;
 	cout <<setprecision(2);
@@ -154,6 +194,8 @@ int main(){
 	}
 	
 	inData.close();
+	
+	info(c);
 	
 	queries(c);
 	
