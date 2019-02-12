@@ -82,7 +82,7 @@ Dept findDept(const College &c, string line){
 						}
 					});
 	if(r == c.Depts.end()){
-		cout << "** dept not found" << endl;
+		cout << "**dept not found" << endl;
 		Dept d("empty");
 		return d;
 	}
@@ -128,9 +128,7 @@ void summary(const College &c){
 		if(y.Name.compare("empty") != 0){
 			getSummary(y);
 		}
-		else{
-			cout << "** dept not found" << endl;
-		}
+	
 	}
 	
 	return;
