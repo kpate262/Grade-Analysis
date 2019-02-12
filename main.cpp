@@ -263,11 +263,12 @@ void unknown(const College &c){
 				if(w.getGradingType() == 2){
 					getCourseInfo(w);
 				}
+				else{
+					cout << "**none found" << endl;
+				}
 			}
 		}
-		else{
-			cout << "**none found" << endl;
-		}
+		
 	}
 	return;
 }
