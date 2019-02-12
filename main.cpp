@@ -386,7 +386,7 @@ void letterA(const College &c){
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(const Course &w: d.Courses){
-				if(GetGradeDistribution(w).PercentA >= threshold){
+				if(GetGradeDistribution(w).PercentA > threshold){
 					sortByA.push_back(w);
 				}
 			}
@@ -395,7 +395,7 @@ void letterA(const College &c){
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
 			for(const Course w: y.Courses){
-				if(GetGradeDistribution(w).PercentA >= threshold){
+				if(GetGradeDistribution(w).PercentA > threshold){
 					sortByA.push_back(w);
 				}
 			}
