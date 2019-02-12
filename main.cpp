@@ -265,6 +265,9 @@ void unknown(const College &c){
 				}
 			}
 		}
+		else{
+			cout << "**none found" << endl;
+		}
 	}
 	return;
 }
