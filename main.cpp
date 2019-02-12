@@ -129,7 +129,7 @@ void summary(const College &c){
 			getSummary(y);
 		}
 		else{
-			cout << "**none found" << endl;
+			cout << "** dept not found" << endl;
 		}
 	}
 	
@@ -140,11 +140,11 @@ void summary(const College &c){
 
 string gradingType(int p){
 	if(p == 0)
-		return "Letter";
+		return "letter";
 	else if(p == 1)
-		return "Satisfactory";
+		return "satisfactory";
 	else if(p == 2)
-		return "Unknown";
+		return "unknown";
 	return "";
 }
 
