@@ -186,7 +186,7 @@ void stringSearch(string line1, string line2, const College &c){
 			}//for loop
 		}//inner if
 		else{
-			cout << "**none found" << endl;
+			//cout << "**none found" << endl;
 		}
 	}//else
 }
@@ -214,7 +214,7 @@ void numericSearch(string line1, int courseNum, const College &c){
 			}//for loop
 		}//inner if
 		else{
-			cout << "**none found" << endl;
+			//cout << "**none found" << endl;
 		}
 	}//else
 }
@@ -317,7 +317,7 @@ void dfw(const College &c){
 	
 	sortCourses(sortByDFW);
 	if(sortByDFW.size() == 0){
-		cout << "**none found" << endl;
+		//cout << "**none found" << endl;
 		return;
 	}
 	for(const Course &f: sortByDFW){
@@ -396,7 +396,7 @@ void letterA(const College &c){
 	
 	sortA(sortByA);
 	if(sortByA.size() == 0){
-		cout << "**none found" << endl;
+		//cout << "**none found" << endl;
 		return;
 	}
 	
