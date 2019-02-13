@@ -1,3 +1,6 @@
+//<<<Kisan Patel>>>
+//UIC CS341
+
 #include <string>
 #include <sstream>
 #include <vector>
@@ -10,6 +13,7 @@
 #include <iomanip>
 
 using namespace std;
+
 
 
 void info(const College &c){
@@ -36,6 +40,7 @@ void info(const College &c){
 }
 
 
+//parses the header of the .csv file for college name, year, etc
 string parseHeader(string line, string &season, string &year){
 	string collegeName;
 	stringstream ss(line);
@@ -46,8 +51,9 @@ string parseHeader(string line, string &season, string &year){
 }
 
 
+//**H elper fucntion that fills in the college vector and sub dept vectors by 
+//parsing through csv 
 void parseDept(Course &s, College &c){
-	
 	auto r = find_if(c.Depts.begin(), c.Depts.end(),
 					 [&](const Dept d){
 						 if(d.Name.compare(s.Dept) == 0){
@@ -69,6 +75,7 @@ void parseDept(Course &s, College &c){
 }
 
 
+
 Dept findDept(const College &c, string line){
 	Dept q;
 	auto r = find_if(c.Depts.begin(), c.Depts.end(), 
@@ -82,7 +89,6 @@ Dept findDept(const College &c, string line){
 						}
 					});
 	if(r == c.Depts.end()){
-		//cout << "**dept not found" << endl;
 		Dept d("empty");
 		return d;
 	}
@@ -92,6 +98,7 @@ Dept findDept(const College &c, string line){
 	Dept d("empty");
 	return d;
 }
+
 
 
 void getSummary(const Dept &y){
@@ -132,7 +139,6 @@ void summary(const College &c){
 			cout << "**dept not found" << endl;
 			return; 
 		}
-	
 	}
 	
 	return;
@@ -307,9 +313,11 @@ void dfw(const College &c){
 	string line = "";
 	cout << "dept name, or all? ";
 	getline(cin, line);
+	
 	double threshold;
 	cout << "dfw threshold? ";
 	cin >> threshold;
+	
 	vector<Course> sortByDFW;
 	int count = 0;
 	
@@ -340,14 +348,15 @@ void dfw(const College &c){
 		}
 	}
 	
+	
+	if(count == 0){
+		cout << "**none found" << endl;
+		return;
+	}
 	sortCourses(sortByDFW);
 	
 	for(const Course &f: sortByDFW){
 		getCourseInfo(f);
-	}
-	if(count == 0){
-		cout << "**none found" << endl;
-		return;
 	}
 	
 	return;
@@ -396,9 +405,11 @@ void letterA(const College &c){
 	string line = "";
 	cout << "dept name, or all? ";
 	getline(cin, line);
+	
 	double threshold;
 	cout << "letter A threshold? ";
 	cin >> threshold;
+	
 	int count = 0;
 	vector<Course> sortByA;
 	
@@ -432,8 +443,8 @@ void letterA(const College &c){
 		cout << "**none found" << endl;
 		return;
 	}
-	sortA(sortByA);
 	
+	sortA(sortByA);
 	
 	for(const Course &f: sortByA){
 		getCourseInfo(f);
