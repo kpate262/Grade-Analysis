@@ -301,11 +301,13 @@ void dfw(const College &c){
 	cout << "dfw threshold? ";
 	cin >> threshold;
 	vector<Course> sortByDFW;
+	int count = 0;
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(Course w: d.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
+					count++;
 					sortByDFW.push_back(w);
 				}
 			}
@@ -316,6 +318,7 @@ void dfw(const College &c){
 		if(y.Name.compare("empty") != 0){
 			for( Course w: y.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
+					count++;
 					sortByDFW.push_back(w);
 				}
 			}
@@ -324,8 +327,8 @@ void dfw(const College &c){
 	}
 	
 	sortCourses(sortByDFW);
-	if(sortByDFW.size() == 0){
-		//cout << "**none found" << endl;
+	if(count == 0){
+		cout << "**none found" << endl;
 		return;
 	}
 	for(const Course &f: sortByDFW){
