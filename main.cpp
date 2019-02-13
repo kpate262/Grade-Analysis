@@ -130,7 +130,7 @@ void summary(const College &c){
 		}
 		else{
 			cout << "**dept not found" << endl;
-			return;
+			return; 
 		}
 	
 	}
