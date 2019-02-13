@@ -409,7 +409,7 @@ void letterA(const College &c){
 	
 	sortA(sortByA);
 	if(count == 0){
-		cout << endl << " **none found" << endl;
+		cout << " **none found" << endl;
 		return;
 	}
 	
