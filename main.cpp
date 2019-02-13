@@ -306,7 +306,7 @@ void dfw(const College &c){
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(Course w: d.Courses){
-				if(GetDFWRate(w, dfw, n) >= threshold){
+				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
 				}
@@ -317,7 +317,7 @@ void dfw(const College &c){
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
 			for( Course w: y.Courses){
-				if(GetDFWRate(w, dfw, n) >= threshold){
+				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
 				}
@@ -389,7 +389,7 @@ void letterA(const College &c){
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(const Course &w: d.Courses){
-				if(GetGradeDistribution(w).PercentA >= threshold){
+				if(GetGradeDistribution(w).PercentA > threshold){
 					count++;
 					sortByA.push_back(w);
 				}
@@ -399,7 +399,7 @@ void letterA(const College &c){
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
 			for(const Course w: y.Courses){
-				if(GetGradeDistribution(w).PercentA >= threshold){
+				if(GetGradeDistribution(w).PercentA > threshold){
 					count++;
 					sortByA.push_back(w);
 				}
