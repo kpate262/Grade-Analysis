@@ -305,7 +305,7 @@ void dfw(const College &c){
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
-			for(Course w: d.Courses){
+			for(Course &w: d.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
@@ -316,7 +316,7 @@ void dfw(const College &c){
 	}else{
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
-			for( Course w: y.Courses){
+			for( Course &w: y.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
