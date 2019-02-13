@@ -302,7 +302,7 @@ void dfw(const College &c){
 	cin >> threshold;
 	vector<Course> sortByDFW;
 	int count = 0;
-	//cout << threshold << endl;
+	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(Course w: d.Courses){
@@ -325,12 +325,12 @@ void dfw(const College &c){
 			
 		}
 	}
-	
-	sortCourses(sortByDFW);
 	if(count == 0){
 		cout << "**none found" << endl;
 		return;
 	}
+	sortCourses(sortByDFW);
+	
 	for(const Course &f: sortByDFW){
 		getCourseInfo(f);
 	}
@@ -407,11 +407,13 @@ void letterA(const College &c){
 		}
 	}
 	
-	sortA(sortByA);
+	
 	if(count == 0){
 		cout << "**none found" << endl;
 		return;
 	}
+	sortA(sortByA);
+	
 	
 	for(const Course &f: sortByA){
 		getCourseInfo(f);
