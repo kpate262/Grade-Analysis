@@ -380,13 +380,14 @@ void letterA(const College &c){
 	double threshold;
 	cout << "letter A threshold? ";
 	cin >> threshold;
-	
+	int count = 0;
 	vector<Course> sortByA;
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
 			for(const Course &w: d.Courses){
 				if(GetGradeDistribution(w).PercentA > threshold){
+					count++;
 					sortByA.push_back(w);
 				}
 			}
@@ -396,6 +397,7 @@ void letterA(const College &c){
 		if(y.Name.compare("empty") != 0){
 			for(const Course w: y.Courses){
 				if(GetGradeDistribution(w).PercentA > threshold){
+					count++;
 					sortByA.push_back(w);
 				}
 			}
@@ -403,7 +405,7 @@ void letterA(const College &c){
 	}
 	
 	sortA(sortByA);
-	if(sortByA.size() == 0){
+	if(count == 0){
 		cout << "**none found" << endl;
 		return;
 	}
