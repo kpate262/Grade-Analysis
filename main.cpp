@@ -563,12 +563,10 @@ int main(){
 	}
 	
 	inData.close();
+	
 	sortDept(c);
 	info(c);
-	
 	queries(c);
-	
-	
 	
 	return 0;
 }
