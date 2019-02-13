@@ -128,6 +128,10 @@ void summary(const College &c){
 		if(y.Name.compare("empty") != 0){
 			getSummary(y);
 		}
+		else{
+			cout << "**dept not found" << endl;
+			return;
+		}
 	
 	}
 	
@@ -186,7 +190,8 @@ void stringSearch(string line1, string line2, const College &c){
 			}//for loop
 		}//inner if
 		else{
-			//cout << "**none found" << endl;
+			cout << "**dept not found" << endl;
+			return;
 		}
 	}//else
 }
@@ -214,7 +219,8 @@ void numericSearch(string line1, int courseNum, const College &c){
 			}//for loop
 		}//inner if
 		else{
-			//cout << "**none found" << endl;
+			cout << "**dept not found" << endl;
+			return;
 		}
 	}//else
 }
@@ -267,6 +273,10 @@ void unknown(const College &c){
 					getCourseInfo(w);
 				}
 			}
+		}
+		else{
+			cout << "**dept not found" << endl;
+			return;
 		}
 		
 	}
@@ -323,6 +333,10 @@ void dfw(const College &c){
 				}
 			}
 			
+		}
+		else{
+			cout << "**dept not found" << endl;
+			return;
 		}
 	}
 	
@@ -406,6 +420,10 @@ void letterA(const College &c){
 					sortByA.push_back(w);
 				}
 			}
+		}
+		else{
+			cout << "**dept not found" << endl;
+			return;
 		}
 	}
 	
