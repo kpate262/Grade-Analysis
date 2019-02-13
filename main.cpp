@@ -82,7 +82,7 @@ Dept findDept(const College &c, string line){
 						}
 					});
 	if(r == c.Depts.end()){
-		cout << "**dept not found" << endl;
+		//cout << "**dept not found" << endl;
 		Dept d("empty");
 		return d;
 	}
@@ -305,7 +305,7 @@ void dfw(const College &c){
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
-			for(Course &w: d.Courses){
+			for(Course w: d.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
@@ -316,7 +316,7 @@ void dfw(const College &c){
 	}else{
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
-			for( Course &w: y.Courses){
+			for( Course w: y.Courses){
 				if(GetDFWRate(w, dfw, n) > threshold){
 					count++;
 					sortByDFW.push_back(w);
@@ -326,14 +326,15 @@ void dfw(const College &c){
 		}
 	}
 	
+	
+	if(count == 0){
+		cout << "**none found" << endl;
+		return;
+	}
 	sortCourses(sortByDFW);
 	
 	for(const Course &f: sortByDFW){
 		getCourseInfo(f);
-	}
-	if(count == 0){
-		cout << "**none found" << endl;
-		return;
 	}
 	
 	return;
@@ -390,7 +391,7 @@ void letterA(const College &c){
 	
 	if(line.compare("all") == 0){
 		for(const Dept &d: c.Depts){
-			for(const Course &w: d.Courses){
+			for( Course w: d.Courses){
 				if(GetGradeDistribution(w).PercentA > threshold){
 					count++;
 					sortByA.push_back(w);
@@ -400,7 +401,7 @@ void letterA(const College &c){
 	}else{
 		Dept y = findDept(c, line);
 		if(y.Name.compare("empty") != 0){
-			for(const Course w: y.Courses){
+			for( Course w: y.Courses){
 				if(GetGradeDistribution(w).PercentA > threshold){
 					count++;
 					sortByA.push_back(w);
@@ -458,8 +459,8 @@ void queries(const College &c){
 			}
 			else if(r->compare("dfw") == 0){
 				dfw(c);
-				string tu;
-				getline(cin, tu);
+				int tu;
+				cin >> tu;
 			}
 			else if(r->compare("letterA") == 0){
 				letterA(c);
