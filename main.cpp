@@ -325,15 +325,17 @@ void dfw(const College &c){
 			
 		}
 	}
-	if(count == 0){
-		cout << "**none found" << endl;
-		return;
-	}
+	
 	sortCourses(sortByDFW);
 	
 	for(const Course &f: sortByDFW){
 		getCourseInfo(f);
 	}
+	if(count == 0){
+		cout << "**none found" << endl;
+		return;
+	}
+	
 	return;
 }
 
