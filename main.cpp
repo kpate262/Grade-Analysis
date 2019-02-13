@@ -326,15 +326,14 @@ void dfw(const College &c){
 		}
 	}
 	
-	
-	if(count == 0){
-		cout << "**none found" << endl;
-		return;
-	}
 	sortCourses(sortByDFW);
 	
 	for(const Course &f: sortByDFW){
 		getCourseInfo(f);
+	}
+	if(count == 0){
+		cout << "**none found" << endl;
+		return;
 	}
 	
 	return;
@@ -459,8 +458,8 @@ void queries(const College &c){
 			}
 			else if(r->compare("dfw") == 0){
 				dfw(c);
-				int tu;
-				cin >> tu;
+				string tu;
+				getline(cin, tu);
 			}
 			else if(r->compare("letterA") == 0){
 				letterA(c);
