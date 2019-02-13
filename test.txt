@@ -1,11 +1,5 @@
 fall-2018.csv
-summary
-CME
-summary
-CS
-blah
-summary
-ME
-summary
-Business
+dfw
+all
+100.0
 #
